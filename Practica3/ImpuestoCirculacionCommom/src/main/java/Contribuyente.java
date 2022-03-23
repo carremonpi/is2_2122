@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -9,6 +10,38 @@ public class Contribuyente implements Serializable {
     private String apellido1;
     private String apellido2;
     private String dni;
+    
+    public Contribuyente() {
+    	
+    }
+    
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public Contribuyente(String nombre, String apellido1, String apellido2, String dni) {
+    	this.nombre = nombre;
+    	this.apellido1 = apellido1;
+    	this.apellido2 = apellido2;
+    	this.dni = dni;
+    	vehiculos = new LinkedList<Vehiculo>();
+    }
     
     /**
      * Retorna el total a pagar por el impuesto 
@@ -60,5 +93,8 @@ public class Contribuyente implements Serializable {
 		return dni;
 	}
     
+	public void anhadeVehiculo(Vehiculo v) {
+		vehiculos.add(v);
+	}
 	
 }
