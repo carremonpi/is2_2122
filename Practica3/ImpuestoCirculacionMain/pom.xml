@@ -53,7 +53,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>Runner</mainClass>
+							<mainClass>es.unican.is2.ImpuestoCirculacionMain.Runner</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

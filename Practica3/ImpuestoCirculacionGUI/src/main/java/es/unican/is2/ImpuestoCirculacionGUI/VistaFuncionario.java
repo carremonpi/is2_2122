@@ -1,3 +1,4 @@
+package es.unican.is2.ImpuestoCirculacionGUI;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +11,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
 import javax.swing.border.LineBorder;
+
+import es.unican.is2.ImpuestoCirculacionCommon.Contribuyente;
+import es.unican.is2.ImpuestoCirculacionCommon.IGestionContribuyentes;
+import es.unican.is2.ImpuestoCirculacionCommon.IGestionVehiculos;
+import es.unican.is2.ImpuestoCirculacionCommon.IInfoImpuestoCirculacion;
+import es.unican.is2.ImpuestoCirculacionCommon.Vehiculo;
 
 import java.awt.Color;
 import javax.swing.JButton;

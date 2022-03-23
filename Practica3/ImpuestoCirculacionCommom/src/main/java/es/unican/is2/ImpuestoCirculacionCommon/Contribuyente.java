@@ -1,3 +1,4 @@
+package es.unican.is2.ImpuestoCirculacionCommon;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
