@@ -5,7 +5,7 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class Contribuyente implements Serializable {
-
+	
     private List<Vehiculo> vehiculos;
     private String nombre;
     private String apellido1;
@@ -50,8 +50,13 @@ public class Contribuyente implements Serializable {
      * @return Valor del impuesto a pagar
      */
     public double totalAPagar() {
+    	double acum = 0;
+    	
+    	for (Vehiculo v : vehiculos) {
+    		acum += v.precioImpuesto();
+    	}
     	//TODO
-    	return 0;
+    	return acum;
     }
     
     /**

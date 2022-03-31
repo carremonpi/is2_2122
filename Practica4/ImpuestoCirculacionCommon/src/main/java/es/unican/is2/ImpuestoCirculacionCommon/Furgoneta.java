@@ -1,6 +1,8 @@
 package es.unican.is2.ImpuestoCirculacionCommon;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.TreeMap;
 @SuppressWarnings("serial")
 public class Furgoneta
     extends Vehiculo implements Serializable
@@ -8,13 +10,24 @@ public class Furgoneta
     
     private double potencia;
     private boolean comercial;
-
+    private final int porcentajeDescuento = 20;
     
-public Furgoneta(String matricula, LocalDate minusMonths, int potencia) {
-		// TODO Auto-generated constructor stub
-		super(matricula, minusMonths);
+	public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
+		super(matricula, fechaMatriculacion);
+		if(potencia <= 0) {
+			throw new OperacionNoValida("La potencia de una furgoneta no puede ser 0 ni negativa");
+		}
 		this.potencia=potencia;
 		comercial=true; //REVISAR
+	}
+	
+	public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia, boolean comercial) throws OperacionNoValida {
+		super(matricula, fechaMatriculacion);
+		if(potencia <= 0) {
+			throw new OperacionNoValida("La potencia de una furgoneta no puede ser 0 ni negativa");
+		}
+		this.potencia=potencia;
+		this.comercial=comercial; 
 	}
 
 /**
@@ -37,8 +50,37 @@ public Furgoneta(String matricula, LocalDate minusMonths, int potencia) {
   
 	@Override
     public double precioImpuesto() {
-    	//TODO
-		return 0;
+		double resultado;
+    	if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
+    		resultado = 0;
+    	} else if(comercial==false) {
+	    	if(potencia < 8) {
+	    		resultado = 25.24;
+	    	} else if(potencia < 12) {
+	    		resultado = 68.16;
+	    	} else if(potencia < 16) {
+	    		resultado = 143.88;
+	    	} else if(potencia < 20) {
+	    		resultado = 179.22;
+	    	} else {
+	    		resultado = 224;
+	    	}
+    	} else {
+    		double descuentoSobre1 = 1-(porcentajeDescuento/100);
+    		if(potencia < 8) {
+    			resultado = 25.24*0.8;
+	    	} else if(potencia < 12) {
+	    		resultado = 68.16*0.8;
+	    	} else if(potencia < 16) {
+	    		resultado = 143.88*0.8;
+	    	} else if(potencia < 20) {
+	    		resultado = 179.22*0.8;
+	    	} else {
+	    		resultado = 224*0.8;
+	    	}
+    	}
+    	
+    	return resultado;
     	
     }
 }

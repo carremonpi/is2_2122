@@ -7,9 +7,15 @@ import java.time.LocalDate;
 public abstract class Vehiculo implements Serializable{
   
     private String matricula;
-	private LocalDate fechaMatriculacion;	
+	private LocalDate fechaMatriculacion;
 		
-	public Vehiculo(String matricula, LocalDate fechaMatriculacion) {
+	public Vehiculo(String matricula, LocalDate fechaMatriculacion) throws OperacionNoValida {
+		if(fechaMatriculacion == null) {
+			throw new OperacionNoValida("La fecha de matriculacion de un vehiculo no puede ser nula");
+		}
+		if(matricula==null) {
+			throw new OperacionNoValida("La matricula de un vehiculo no puede ser nula");
+		}
 		this.matricula=matricula;
 		this.fechaMatriculacion=fechaMatriculacion;
 	}
@@ -34,14 +40,6 @@ public abstract class Vehiculo implements Serializable{
      */
 	public LocalDate getFechaMatriculacion() {
 		return fechaMatriculacion;
-	}
-	
-	public void setMatricula(String matricula) {
-		this.matricula=matricula;
-	}
-	
-	public void setFechaMat(LocalDate fechaMatriculacion) {
-		this.fechaMatriculacion=fechaMatriculacion;
 	}
 
 }

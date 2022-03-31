@@ -10,8 +10,11 @@ public class Turismo
 	private double potencia;
 
 
-	public Turismo(String matricula, LocalDate fechaMatriculacion, int potencia) {
+	public Turismo(String matricula, LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
+		if(potencia <= 0) {
+			throw new OperacionNoValida("La potencia de un turismo no puede ser negativa");
+		}
 		this.potencia=potencia;
 	}
 
@@ -31,8 +34,20 @@ public class Turismo
      */
 	@Override
     public double precioImpuesto() {
-		// TODO
-    	return 0;
+		if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
+    		return 0;
+    	} 
+    	if(potencia < 8) {
+    		return 25.24;
+    	} else if(potencia < 12) {
+    		return 68.16;
+    	} else if(potencia < 16) {
+    		return 143.88;
+    	} else if(potencia < 20) {
+    		return 179.22;
+    	} else {
+    		return 224;
+    	}
     }
     
 }
