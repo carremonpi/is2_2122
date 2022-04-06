@@ -55,7 +55,7 @@ public class Contribuyente implements Serializable {
     	for (Vehiculo v : vehiculos) {
     		acum += v.precioImpuesto();
     	}
-    	//TODO
+    	System.out.println("Precio contrib: " + acum);
     	return acum;
     }
     
@@ -99,6 +99,10 @@ public class Contribuyente implements Serializable {
 		return dni;
 	}
     
+	/**
+	 * Anhade un vehiculo al contribuyente
+	 * @param v vehiculo que se añade
+	 */
 	public void anhadeVehiculo(Vehiculo v) {
 		vehiculos.add(v);
 	}

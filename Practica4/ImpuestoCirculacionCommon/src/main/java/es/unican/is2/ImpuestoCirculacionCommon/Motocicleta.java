@@ -4,6 +4,15 @@ import java.time.LocalDate;
 @SuppressWarnings("serial")
 public class Motocicleta extends Vehiculo
 {
+	private static final double precioBaseTramo5 = 121.16;
+	private static final double precioBaseTramo4 = 60.58;
+	private static final double precioBaseTramo3 = 30.30;
+	private static final double precioBaseTramo2 = 15.14;
+	private static final double precioBaseTramo1 = 8.84;
+	private static final int limiteTramo4 = 1000;
+	private static final int limiteTramo3 = 500;
+	private static final int limiteTramo2 = 250;
+	private static final int limiteTramo1 = 125;
 	private int cilindrada;
 
     public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) throws OperacionNoValida {
@@ -22,23 +31,26 @@ public class Motocicleta extends Vehiculo
     public int getCilindrada() {
         return cilindrada;
     }
-    
   
+    
+    /**
+     * Calcula el precio del impuesto
+     */
 	@Override
     public double precioImpuesto() {
 		if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
     		return 0;
     	} 
-    	if(cilindrada <= 125) {
-    		return 8.84;
-    	} else if(cilindrada <= 250) {
-    		return 15.14;
-    	} else if(cilindrada <= 500) {
-    		return 30.30;
-    	} else if(cilindrada <= 1000) {
-    		return 60.58;
+    	if(cilindrada <= limiteTramo1) {
+    		return precioBaseTramo1;
+    	} else if(cilindrada <= limiteTramo2) {
+    		return precioBaseTramo2;
+    	} else if(cilindrada <= limiteTramo3) {
+    		return precioBaseTramo3;
+    	} else if(cilindrada <= limiteTramo4) {
+    		return precioBaseTramo4;
     	} else {
-    		return 121.16;
+    		return precioBaseTramo5;
     	}
 		
     }

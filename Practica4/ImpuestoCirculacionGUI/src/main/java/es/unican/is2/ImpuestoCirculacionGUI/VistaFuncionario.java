@@ -69,6 +69,7 @@ public class VistaFuncionario extends JFrame {
 		txtTotalContribuyente.setName("txtTotalContribuyente");
 
 		JLabel lblTotalContribuyente = new JLabel("Total A Pagar");
+		lblTotalContribuyente.setName("lblPrecio");
 		lblTotalContribuyente.setBounds(137, 254, 99, 14);
 		contentPane.add(lblTotalContribuyente);
 
@@ -79,10 +80,12 @@ public class VistaFuncionario extends JFrame {
 		listMatriculasVehiculos.setModel(listModel);
 
 		JLabel lblVehiculos = new JLabel("Vehiculos");
+		lblVehiculos.setName("lblVehiculos");
 		lblVehiculos.setBounds(149, 93, 65, 14);
 		contentPane.add(lblVehiculos);
 
 		JLabel lblNombreContribuyente = new JLabel("Nombre");
+		lblNombreContribuyente.setName("lblNombreCobtribuyente");
 		lblNombreContribuyente.setBounds(155, 54, 65, 14);
 		contentPane.add(lblNombreContribuyente);
 
@@ -93,6 +96,7 @@ public class VistaFuncionario extends JFrame {
 		txtNombreContribuyente.setName("txtNombreContribuyente");
 
 		JLabel lblDatosContribuyente = new JLabel("Datos Contribuyente");
+		lblNombreContribuyente.setName("lblDatosContribuyente");
 		lblDatosContribuyente.setBounds(230, 11, 149, 14);
 		contentPane.add(lblDatosContribuyente);
 
@@ -123,9 +127,9 @@ public class VistaFuncionario extends JFrame {
 		Contribuyente c = info.contribuyente(dni);
 		if (c != null) {
 			txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2());
-			txtTotalContribuyente.setText(c.getNombre());
+			txtTotalContribuyente.setText(Double.toString(c.totalAPagar()));
 			listModel.removeAllElements();
-			for (int i = 0; i < c.getVehiculos().size() - 1; i++) {
+			for (int i = 0; i < c.getVehiculos().size() - 1; i++) { //MIRAR -1
 				Vehiculo v = c.getVehiculos().get(i);
 				listModel.addElement(v.getMatricula());
 			}
