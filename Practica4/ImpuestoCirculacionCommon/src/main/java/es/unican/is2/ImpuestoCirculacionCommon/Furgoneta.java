@@ -68,7 +68,7 @@ public class Furgoneta
     		resultado = calculaDescuento();
     	}
     	
-    	return resultado;
+    	return Math.round(resultado*100.0)/100.0;
     }
 	
 	

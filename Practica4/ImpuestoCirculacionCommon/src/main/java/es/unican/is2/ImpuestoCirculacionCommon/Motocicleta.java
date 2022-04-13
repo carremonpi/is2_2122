@@ -55,7 +55,7 @@ public class Motocicleta extends Vehiculo
 	    	}
     	}
 		
-		return resultado;
+		return Math.round(resultado*100.0)/100.0;
 		
     }
 }

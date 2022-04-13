@@ -68,8 +68,8 @@ public class VistaFuncionario extends JFrame {
 		txtTotalContribuyente.setColumns(10);
 		txtTotalContribuyente.setName("txtTotalContribuyente");
 
-		JLabel lblTotalContribuyente = new JLabel("Total A Pagar");
-		lblTotalContribuyente.setName("lblPrecio");
+		JLabel lblTotalContribuyente = new JLabel("Total A Pagar"); //LBL-Content
+		lblTotalContribuyente.setName("lblPrecio"); //LBL-Name
 		lblTotalContribuyente.setBounds(137, 254, 99, 14);
 		contentPane.add(lblTotalContribuyente);
 
@@ -78,14 +78,15 @@ public class VistaFuncionario extends JFrame {
 		contentPane.add(listMatriculasVehiculos);
 		listMatriculasVehiculos.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listMatriculasVehiculos.setModel(listModel);
+		listMatriculasVehiculos.setName("listVehiculos");
 
-		JLabel lblVehiculos = new JLabel("Vehiculos");
-		lblVehiculos.setName("lblVehiculos");
+		JLabel lblVehiculos = new JLabel("Vehiculos"); //LBL-Content
+		lblVehiculos.setName("lblVehiculos"); //LBL-Name
 		lblVehiculos.setBounds(149, 93, 65, 14);
 		contentPane.add(lblVehiculos);
 
-		JLabel lblNombreContribuyente = new JLabel("Nombre");
-		lblNombreContribuyente.setName("lblNombreCobtribuyente");
+		JLabel lblNombreContribuyente = new JLabel("Nombre"); //LBL-Content
+		lblNombreContribuyente.setName("lblNombreCobtribuyente"); //LBL-Name
 		lblNombreContribuyente.setBounds(155, 54, 65, 14);
 		contentPane.add(lblNombreContribuyente);
 
@@ -95,8 +96,8 @@ public class VistaFuncionario extends JFrame {
 		txtNombreContribuyente.setColumns(10);
 		txtNombreContribuyente.setName("txtNombreContribuyente");
 
-		JLabel lblDatosContribuyente = new JLabel("Datos Contribuyente");
-		lblNombreContribuyente.setName("lblDatosContribuyente");
+		JLabel lblDatosContribuyente = new JLabel("Datos Contribuyente"); //LBL-Content
+		lblNombreContribuyente.setName("lblDatosContribuyente"); //LBL-Name
 		lblDatosContribuyente.setBounds(230, 11, 149, 14);
 		contentPane.add(lblDatosContribuyente);
 
@@ -106,10 +107,10 @@ public class VistaFuncionario extends JFrame {
 		txtDniContribuyente.setColumns(10);
 		txtDniContribuyente.setName("txtDniContribuyente");
 
-		JLabel lblDniContribuyente = new JLabel("DNI Contribuyente");
+		JLabel lblDniContribuyente = new JLabel("DNI Contribuyente"); //LBL-Content
 		lblDniContribuyente.setBounds(21, 27, 139, 14);
 		contentPane.add(lblDniContribuyente);
-		lblDniContribuyente.setName("lblDniContribuyente");
+		lblDniContribuyente.setName("lblDniContribuyente"); //LBL-Name
 
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -129,7 +130,7 @@ public class VistaFuncionario extends JFrame {
 			txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2());
 			txtTotalContribuyente.setText(Double.toString(c.totalAPagar()));
 			listModel.removeAllElements();
-			for (int i = 0; i < c.getVehiculos().size() - 1; i++) { //MIRAR -1
+			for (int i = 0; i < c.getVehiculos().size(); i++) {
 				Vehiculo v = c.getVehiculos().get(i);
 				listModel.addElement(v.getMatricula());
 			}
