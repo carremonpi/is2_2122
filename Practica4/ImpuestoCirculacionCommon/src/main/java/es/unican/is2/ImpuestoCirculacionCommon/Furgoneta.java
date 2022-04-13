@@ -1,8 +1,6 @@
 package es.unican.is2.ImpuestoCirculacionCommon;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.TreeMap;
 @SuppressWarnings("serial")
 public class Furgoneta
     extends Vehiculo implements Serializable
@@ -20,7 +18,7 @@ public class Furgoneta
 	
 	private double potencia;
     private boolean comercial;
-    private final int porcentajeDescuentoComercial = 20;
+    private final double descuentoComercial = 0.20;
     
 	public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
@@ -66,10 +64,8 @@ public class Furgoneta
 		double resultado;
     	if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
     		resultado = 0;
-    	} else if(comercial==false) {
-	    	resultado = calculaDescuento(0);
     	} else {
-    		resultado = calculaDescuento(porcentajeDescuentoComercial);
+    		resultado = calculaDescuento();
     	}
     	
     	return resultado;
@@ -81,8 +77,7 @@ public class Furgoneta
 	 * @param porcentajeDescuento descuento a aplicar en porcentaje
 	 * @return el precio con el descuento aplicado
 	 */
-	private double calculaDescuento(int porcentajeDescuento) {
-		double descuentoSobre1 = 1 - (porcentajeDescuento/100);
+	private double calculaDescuento() {
 		double resultado;
 		if(potencia < limiteTramo1) {
 			resultado = precioBaseTramo1;
@@ -96,8 +91,9 @@ public class Furgoneta
 			resultado = precioBaseTramo5;
 		}
 		
-		System.out.println("Descuento sobre 1: " + descuentoSobre1 + ", Precio antes: " + resultado);
-		resultado = resultado*descuentoSobre1;
+		if (comercial) {
+			resultado = resultado*(1-descuentoComercial);
+		}
 		
 		return resultado;
 	}

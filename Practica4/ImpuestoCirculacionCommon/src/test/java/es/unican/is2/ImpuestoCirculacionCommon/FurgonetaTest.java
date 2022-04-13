@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import es.unican.is2.ImpuestoCirculacionCommon.Furgoneta;
-import es.unican.is2.ImpuestoCirculacionCommon.OperacionNoValida;
-
 import java.time.LocalDate;
 public class FurgonetaTest {
 

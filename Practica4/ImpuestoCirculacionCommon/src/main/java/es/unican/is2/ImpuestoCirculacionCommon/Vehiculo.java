@@ -19,6 +19,7 @@ public abstract class Vehiculo implements Serializable{
 		this.matricula=matricula;
 		this.fechaMatriculacion=fechaMatriculacion;
 	}
+	
 	/**
      * Retorna el valor del impuesto de circulacion
      *  @return valor del impuesto circulacion

@@ -46,18 +46,19 @@ public class Turismo
     public double precioImpuesto() {
 		double resultado;
 		if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
-    		return 0;
-    	} 
-		if(potencia < limiteTramo1) {
-			resultado = precioBaseTramo1;
-		} else if(potencia < limiteTramo2) {
-			resultado = precioBaseTramo2;
-		} else if(potencia < limiteTramo3) {
-			resultado = precioBaseTramo3;
-		} else if(potencia < limiteTramo4) {
-			resultado = precioBaseTramo4;
-		} else {
-			resultado = precioBaseTramo5;
+    		resultado = 0;
+    	} else {
+			if(potencia < limiteTramo1) {
+				resultado = precioBaseTramo1;
+			} else if(potencia < limiteTramo2) {
+				resultado = precioBaseTramo2;
+			} else if(potencia < limiteTramo3) {
+				resultado = precioBaseTramo3;
+			} else if(potencia < limiteTramo4) {
+				resultado = precioBaseTramo4;
+			} else {
+				resultado = precioBaseTramo5;
+			}
 		}
 		
 		return resultado;

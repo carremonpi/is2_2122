@@ -38,20 +38,24 @@ public class Motocicleta extends Vehiculo
      */
 	@Override
     public double precioImpuesto() {
+		double resultado;
 		if(super.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || super.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25)) ) {
-    		return 0;
-    	} 
-    	if(cilindrada <= limiteTramo1) {
-    		return precioBaseTramo1;
-    	} else if(cilindrada <= limiteTramo2) {
-    		return precioBaseTramo2;
-    	} else if(cilindrada <= limiteTramo3) {
-    		return precioBaseTramo3;
-    	} else if(cilindrada <= limiteTramo4) {
-    		return precioBaseTramo4;
+    		resultado = 0;
     	} else {
-    		return precioBaseTramo5;
+	    	if(cilindrada <= limiteTramo1) {
+	    		resultado = precioBaseTramo1;
+	    	} else if(cilindrada <= limiteTramo2) {
+	    		resultado = precioBaseTramo2;
+	    	} else if(cilindrada <= limiteTramo3) {
+	    		resultado = precioBaseTramo3;
+	    	} else if(cilindrada <= limiteTramo4) {
+	    		resultado = precioBaseTramo4;
+	    	} else {
+	    		resultado = precioBaseTramo5;
+	    	}
     	}
+		
+		return resultado;
 		
     }
 }
