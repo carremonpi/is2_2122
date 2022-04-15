@@ -8,9 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.unican.is2.ImpuestoCirculacionBusiness.GestionImpuestoCirculacion;
-import es.unican.is2.ImpuestoCirculacionCommon.IGestionContribuyentes;
-import es.unican.is2.ImpuestoCirculacionCommon.IGestionVehiculos;
-import es.unican.is2.ImpuestoCirculacionCommon.IInfoImpuestoCirculacion;
 import es.unican.is2.ImpuestoCirculacionDAO.ContribuyentesDAO;
 import es.unican.is2.ImpuestoCirculacionDAO.VehiculosDAO;
 import es.unican.is2.ImpuestoCirculacionGUI.VistaFuncionario;
@@ -44,25 +41,17 @@ public class VistaFuncionarioTest {
 	public void test() {
 		
 		// Comprobamos que la interfaz tiene el aspecto deseado
-		//demo.label("lblPrecio").requireText("Total A Pagar");
-		//demo.label("lblVehiculos").requireText("Vehiculos");
-		//demo.label("lblNombreCobtribuyente").requireText("Nombre");
-		//demo.label("lblDatosContribuyente").requireText("Datos Contribuyente");
-		//demo.label("lblDniContribuyente").requireText("DNI Contribuyente");
-		
 		demo.button("btnBuscar").requireText("Buscar");
 		demo.button().requireVisible();
 		
-		//  Prueba de saludo con nombre
+		//  Prueba de DNI valido
 		
-		// Escribimos un nombre
+		// Escribimos un DNI valido
 		demo.textBox("txtDniContribuyente").enterText("11111111A");
 		// Pulsamos el botón
 		demo.button("btnBuscar").click();		
 		// Comprobamos la salida
 		demo.textBox("txtNombreContribuyente").requireText("Pepe López Martínez");
-		//demo.list()
-		//demo.list("listVehiculos").requireItemCount(2);
 		demo.list("listVehiculos").requireItemCount(2);
 		demo.list("listVehiculos").clickItem("1111-AAA");
 		demo.list("listVehiculos").clickItem("1111-BBB");
@@ -72,10 +61,21 @@ public class VistaFuncionarioTest {
 		
 		demo.textBox("txtTotalContribuyente").requireText("403.2");
 		
-		// Prueba de saludo sin nombre
-		//demo.textBox("txtNombre").setText("");
-		//demo.button("btnPulsar").click();
-		//demo.textBox("txtSaludo").requireText("¡Hola!");
+		// Prueba de usuario sin DNI
+		demo.textBox("txtDniContribuyente").setText("");
+		demo.button("btnBuscar").click();
+		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
+		demo.textBox("txtTotalContribuyente").requireText("0");
+		lista = demo.list("listVehiculos").contents();
+		assertTrue(lista.length == 0);
+		
+		// Prueba de usuario con DNI no valido
+		demo.textBox("txtDniContribuyente").setText("777Z");
+		demo.button("btnBuscar").click();
+		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
+		demo.textBox("txtTotalContribuyente").requireText("0");
+		lista = demo.list("listVehiculos").contents();
+		assertTrue(lista.length == 0);
 		
 		// Sleep para visualizar como se realiza el test
 		try {

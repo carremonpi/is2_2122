@@ -55,7 +55,6 @@ public class Contribuyente implements Serializable {
     	for (Vehiculo v : vehiculos) {
     		acum += v.precioImpuesto();
     	}
-    	System.out.println("Precio contrib: " + acum);
     	return acum;
     }
     
