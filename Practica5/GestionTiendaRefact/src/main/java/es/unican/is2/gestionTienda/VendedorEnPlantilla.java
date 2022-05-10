@@ -5,9 +5,10 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 	
 	/**
 	 * Retorna un nuevo vendedor en plantilla del tipo que se indica
-	 * @param nombre
-	 * @param dni
-	 * @param tipo
+	 * @param nombre el nombre del vendedor
+	 * @param id el id del vendedor
+	 * @param dni el dni del vendedor
+	 * @param multiplicador la bonificacion a las ventas del vendedor
 	 */
 	public VendedorEnPlantilla(String nombre, String id, String dni, double multiplicador) { //WMC + 1
 		super(nombre, id, dni, multiplicador);

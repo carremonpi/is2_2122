@@ -21,7 +21,8 @@ public abstract class Vendedor {
 		this.nombre = nombre;
 		this.id = id;
 		this.dni = dni;
-		MULTIPLICADOR = multiplicador;
+		this.MULTIPLICADOR = multiplicador;
+		totalVentasMensuales = 0;
 	} //WMC = 1 	CCog=0
 	
 	/**
@@ -30,6 +31,14 @@ public abstract class Vendedor {
 	 */
 	public String getDni() {  //WMC + 1
 		return dni;
+	} //WMC = 1 	CCog = 0
+	
+	/**
+	 * Retorna el dni del vendedor
+	 * @return dni
+	 */
+	public double getMultiplicador() {  //WMC + 1
+		return MULTIPLICADOR;
 	} //WMC = 1 	CCog = 0
 	
 	/**
@@ -71,7 +80,7 @@ public abstract class Vendedor {
 	 * @param importe de la venta
 	 */
 	public void anhadeVenta(double importe){ //WMC + 1
-		totalVentasMensuales += importe + importe*MULTIPLICADOR;
+		totalVentasMensuales += importe + importe * MULTIPLICADOR;
 	} //WMC = 1		CCog=0
 	
 } //WMC = 7 	WMCn = 1 	CCog = 0

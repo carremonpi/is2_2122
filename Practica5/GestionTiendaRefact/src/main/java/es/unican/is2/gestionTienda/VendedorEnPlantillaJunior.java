@@ -13,7 +13,7 @@ public class VendedorEnPlantillaJunior extends VendedorEnPlantilla {
 		if (!(obj instanceof VendedorEnPlantillaJunior)) //WMC + 1 	CCog + 1
 			return false;
 		VendedorEnPlantillaJunior v = (VendedorEnPlantillaJunior) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
+		return (v.getId().equals(this.getId()) && v.getDni().equals(this.getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3		CCog = 2
 	
 } //WMC = 4 	WMCn = 2 	CCog = 2

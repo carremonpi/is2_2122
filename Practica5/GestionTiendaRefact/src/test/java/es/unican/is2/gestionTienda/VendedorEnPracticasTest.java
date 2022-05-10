@@ -36,6 +36,7 @@ public class VendedorEnPracticasTest {
 
 	@Test
 	public void testAnhadeVenta() {
+		
 		sut.anhadeVenta(200);
 		assertTrue(sut.getTotalVentas() == 200.0);
 		

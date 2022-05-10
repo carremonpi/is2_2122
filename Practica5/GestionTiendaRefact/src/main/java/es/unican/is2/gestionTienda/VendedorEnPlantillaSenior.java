@@ -12,8 +12,9 @@ public class VendedorEnPlantillaSenior extends VendedorEnPlantilla {
 	public boolean equals(Object obj) { //WMC + 1
 		if (!(obj instanceof VendedorEnPlantillaSenior)) //WMC + 1 	CCog + 1
 			return false;
+		
 		VendedorEnPlantillaSenior v = (VendedorEnPlantillaSenior) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
+		return (v.getId().equals(this.getId()) && v.getDni().equals(this.getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3		CCog = 2
 	
 } //WMC = 4 	WMCn = 2 	CCog = 2
