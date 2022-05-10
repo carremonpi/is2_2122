@@ -33,4 +33,5 @@ public class VendedorEnPlantilla extends Vendedor { //WMC = 6
 		VendedorEnPlantilla v = (VendedorEnPlantilla) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3		CCog = 2
-}
+	
+} //WMC = 6 	WMCn = 1,5 		CCog = 2

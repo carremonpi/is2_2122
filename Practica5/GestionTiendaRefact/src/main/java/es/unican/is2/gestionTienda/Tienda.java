@@ -288,6 +288,6 @@ public class Tienda {
 					senior.add(vp);
 			}
 		}
-	}//WMC = 5	CCog = 7
+	} //WMC = 5	CCog = 7
 
-}
+} //WMC = 32 	WMCn = 2,13 	CCog = 22

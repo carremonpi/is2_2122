@@ -113,7 +113,7 @@ public class GestionComisiones {
 
 	} //WMC = 1  	CCog = 0
 	
-	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  { //(RRRRR)
+	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  { 
 
 		public int compare(Vendedor o1, Vendedor o2) { //WMC + 1
 			if (o1.getTotalVentas()>o2.getTotalVentas()) //WMC + 1  	CCog + 1
@@ -123,7 +123,6 @@ public class GestionComisiones {
 			return 0;
 		} //WMC = 3  	CCog = 2
 		
-	}
+	} //WMC = 3 	WMCn = 3 	CCog = 2
 	
-	
-}
+} //WMC = 12 	WMCn = 6 	CCog = 16

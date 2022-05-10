@@ -6,7 +6,7 @@ public class VendedorEnPlantillaSenior extends VendedorEnPlantilla {
 	
 	public VendedorEnPlantillaSenior(String nombre, String id, String dni) { //WMC + 1
 		super(nombre, id, dni, MULTIPLICADOR);
-	} //WMC = 1
+	} //WMC = 1 CCog = 0
 	
 	@Override
 	public boolean equals(Object obj) { //WMC + 1
@@ -15,4 +15,5 @@ public class VendedorEnPlantillaSenior extends VendedorEnPlantilla {
 		VendedorEnPlantillaSenior v = (VendedorEnPlantillaSenior) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3		CCog = 2
-}
+	
+} //WMC = 4 	WMCn = 2 	CCog = 2

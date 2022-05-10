@@ -143,7 +143,6 @@ public class GestionComisiones {
 			return 0;
 		} //WMC = 3  	CCog = 2
 		
-	}
-	
-	
-}
+	} //WMC = 3 	WMCn = 3 	CCog = 2
+
+} //WMC = 15 	WMCn = 3 	CCog = 10

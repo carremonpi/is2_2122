@@ -310,4 +310,4 @@ public class Tienda {
 		}
 	} //WMC = 9 	CCog = 12
 
-}
+} //WMC = 37 	WMCn = 4,11		CCog = 35	

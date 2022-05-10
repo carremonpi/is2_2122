@@ -13,4 +13,4 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 		super(nombre, id, dni, multiplicador);
 	} //WMC = 1		CCog=0
 	
-}
+} //WMC = 1 	WMCn = 1 	CCog = 0

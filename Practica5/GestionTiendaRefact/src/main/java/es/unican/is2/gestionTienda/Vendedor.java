@@ -74,4 +74,4 @@ public abstract class Vendedor {
 		totalVentasMensuales += importe + importe*MULTIPLICADOR;
 	} //WMC = 1		CCog=0
 	
-}
+} //WMC = 7 	WMCn = 1 	CCog = 0

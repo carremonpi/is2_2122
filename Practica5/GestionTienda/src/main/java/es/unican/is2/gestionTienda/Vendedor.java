@@ -63,4 +63,4 @@ public abstract class Vendedor {
 		t += importe;
 	} //WMC = 1		CCog=0
 	
-}
+} //WMC = 6 	WMCn = 1 	CCog = 0

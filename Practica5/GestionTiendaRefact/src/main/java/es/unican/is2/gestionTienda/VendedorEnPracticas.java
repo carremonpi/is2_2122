@@ -21,4 +21,5 @@ public class VendedorEnPracticas extends Vendedor {
 		VendedorEnPracticas v = (VendedorEnPracticas) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3 	CCog = 2
-}
+	
+} //WMC = 4 	WMCn = 2 	CCog = 2
