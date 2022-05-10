@@ -1,7 +1,7 @@
 package es.unican.is2.gestionTienda;
 
 
-public abstract class VendedorEnPlantilla extends Vendedor { //WMC = 6 
+public abstract class VendedorEnPlantilla extends Vendedor {
 	
 	/**
 	 * Retorna un nuevo vendedor en plantilla del tipo que se indica

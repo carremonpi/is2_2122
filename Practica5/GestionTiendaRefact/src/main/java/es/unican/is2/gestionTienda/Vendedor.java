@@ -62,7 +62,7 @@ public abstract class Vendedor {
 	 * Se utiliza para poder cargar los datos desde fichero
 	 * @param Total de ventas
 	 */
-	public void setT(double totalVentas) { //WMC + 1
+	public void setTotalVentas(double totalVentas) { //WMC + 1
 		this.totalVentasMensuales = totalVentas;
 	} //WMC = 1		CCog=0
 	
@@ -70,7 +70,7 @@ public abstract class Vendedor {
 	 * Anhade una nueva venta al vendedor, actualizando su comision
 	 * @param importe de la venta
 	 */
-	public void anhade(double importe){ //WMC + 1
+	public void anhadeVenta(double importe){ //WMC + 1
 		totalVentasMensuales += importe + importe*MULTIPLICADOR;
 	} //WMC = 1		CCog=0
 	

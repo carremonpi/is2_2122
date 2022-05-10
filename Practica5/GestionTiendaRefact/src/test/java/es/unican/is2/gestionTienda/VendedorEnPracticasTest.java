@@ -24,25 +24,25 @@ public class VendedorEnPracticasTest {
 	
 	@Test
 	public void testSetTotalVentas() {
-		sut.setT(100);
+		sut.setTotalVentas(100);
 		assertTrue(sut.getTotalVentas()==100.0);
 		
-		sut.setT(230);
+		sut.setTotalVentas(230);
 		assertTrue(sut.getTotalVentas()==230.0);
 		
-		sut.setT(0);
+		sut.setTotalVentas(0);
 		assertTrue(sut.getTotalVentas()==0.0);
 	}
 
 	@Test
 	public void testAnhadeVenta() {
-		sut.anhade(200);
+		sut.anhadeVenta(200);
 		assertTrue(sut.getTotalVentas() == 200.0);
 		
-		sut.anhade(300);
+		sut.anhadeVenta(300);
 		assertTrue(sut.getTotalVentas() == 500.0);	
 		
-		sut.anhade(0);
+		sut.anhadeVenta(0);
 		assertTrue(sut.getTotalVentas() == 500.0);
 		
 		

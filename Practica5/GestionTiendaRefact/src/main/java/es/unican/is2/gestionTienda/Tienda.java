@@ -96,22 +96,11 @@ public class Tienda {
 			return false;
 		}
 		double importeFinal = importe;
-		/*
-		if (vendedor instanceof VendedorEnPlantilla) { //WMC + 1 		CCog + 1
-			switch (((VendedorEnPlantilla) vendedor).tipo()) { //CCog + 2
-			case JUNIOR: //WMC + 1
-				importeFinal += importeFinal * 0.005;
-				break;
-			case SENIOR: //WMC + 1
-				importeFinal += importeFinal * 0.01;
-				break;
-			}
-		}
-		*/
-		vendedor.anhade(importeFinal);
+		
+		vendedor.anhadeVenta(importeFinal);
 		vuelcaDatos();
 		return true;
-	} //WMC = 5  	CCog = 4
+	} //WMC = 2  	CCog = 1
 
 	/**
 	 * Retorna el vendedor con el id indicado
@@ -129,9 +118,9 @@ public class Tienda {
 			}
 		}
 		return null;
-	} //WMC = 9 	CCog = 10
+	} //WMC = 3 	CCog = 3
 
-	private void leeFichero() {
+	private void leeFichero() { //WMC + 1
 		vendedores = new LinkedList<Vendedor>();
 		Scanner in = null;
 		try {
@@ -144,52 +133,83 @@ public class Tienda {
 			in.next();
 			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 	CCog + 2
-
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantillaJunior(nombre, idIn, dni);
-				ven.setT(totalVentas);
-				vendedores.add(ven);
-			}
+			leeVendedorSenior(in);
+			
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 		CCog + 2
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantillaSenior(nombre, idIn, dni);
-				ven.setT(totalVentas);
-				vendedores.add(ven);
-			}
-			while (in.hasNext()) { //WMC + 1 		CCog + 1
-				in.next();
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
-				vendedores.add(ven);
-			}
+			leeVendedorJunior(in);
+			
+			// lee los vendedores en practicas
+			leeVendedorEnPracticas(in);
+			
 		} catch (FileNotFoundException e) { //CCog + 1 
 		} finally {
 			if (in != null) {//WMC + 1 	    CCog + 1
 				in.close();
 			}
 		}
-	}
+	} //WMC = 2 	CCog = 2
+	
+	/**
+	 * Lee los vendedores en practicas del fichero.
+	 * @param in objeto de la clase Scanner para leer el fichero
+	 */
+	private void leeVendedorEnPracticas(Scanner in) { //WMC + 1
+		Vendedor ven;
+		while (in.hasNext()) { //WMC + 1 		CCog + 1
+			in.next();
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPracticas(nombre, idIn, dni);
+			ven.setTotalVentas(totalVentas);
+			vendedores.add(ven);
+		}
+	}//WMC = 2 	CCog = 1
+	
+	/**
+	 * Lee los vendedores en plantilla junior del fichero.
+	 * @param in objeto de la clase Scanner para leer el fichero
+	 */
+	private void leeVendedorJunior(Scanner in) { //WMC + 1
+		Vendedor ven;
+		while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 		CCog + 2
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPlantillaJunior(nombre, idIn, dni);
+			ven.setTotalVentas(totalVentas);
+			vendedores.add(ven);
+		}
+	} //WMC = 3 	CCog = 2
+	
+	/**
+	 * Lee los vendedores en plantilla senior del fichero.
+	 * @param in objeto de la clase Scanner para leer el fichero
+	 */
+	private void leeVendedorSenior(Scanner in) { //WMC + 1
+		Vendedor ven;
+		while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 	CCog + 2
+
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPlantillaSenior(nombre, idIn, dni);
+			ven.setTotalVentas(totalVentas);
+			vendedores.add(ven);
+		}
+	} //WMC = 3 	CCog = 2
 
 	/**
 	 * Retorna la lista de vendedores actuales de la tienda 
@@ -201,7 +221,7 @@ public class Tienda {
 
 		return vendedores;
 
-	} //WMC = 7 	CCog = 7
+	} //WMC = 1 	CCog = 0
 
 	/**
 	 * Método que actualiza el fichero datosTienda.txt 
@@ -223,33 +243,40 @@ public class Tienda {
 			out.println(direccion);
 			out.println();
 			out.println("Senior");
-			for (Vendedor v : senior) { //WMC + 1 	 CCog + 1
-				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v1.getNombre() + " Id: " + v1.getId() + " DNI: "+ v1.getDni()+" TotalVentasMes: "
-						+ v1.getTotalVentas());
-			}
+			escribeVendedor(out, senior);
 			out.println();
 			out.println("Junior");
-			for (Vendedor v : junior) { //WMC + 1 	CCog + 1
-				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v2.getNombre() + " Id: " + v2.getId() + " DNI: "+ v2.getDni()+" TotalVentasMes: "
-						+ v2.getTotalVentas());
-			}
+			escribeVendedor(out, junior);
 			out.println();
 			out.println("Prácticas");
-			for (Vendedor v : practicas) { //WMC + 1 	CCog + 1
-				VendedorEnPracticas v3 = (VendedorEnPracticas) v;
-				out.println("  Nombre: " + v3.getNombre() + " Id: " + v3.getId() + " DNI: "+ v3.getDni()+" TotalVentasMes: "
-						+ v3.getTotalVentas());
-			}
+			escribeVendedor(out, practicas);
 
 		} finally {
 			if (out != null) //WMC + 1 	 CCog + 1
 				out.close();
 		}
-	} //WMC = 9 	CCog = 12
+	} //WMC = 2	CCog = 1
+	
+	/**
+	 * Escribe la lista de vendedores indicada en el fichero indicado.
+	 * @param out fichero donde escribir los datos
+	 * @param vendedores vendedores a escribir
+	 */
+	private void escribeVendedor(PrintWriter out, List<Vendedor> vendedores) { //WMC + 1
+		for (Vendedor v : vendedores) { //WMC + 1 	CCog + 1
+			VendedorEnPracticas vendedor = (VendedorEnPracticas) v;
+			out.println("  Nombre: " + vendedor.getNombre() + " Id: " + vendedor.getId() + " DNI: "+ vendedor.getDni()+" TotalVentasMes: "
+					+ vendedor.getTotalVentas());
+		}
+	} //WMC = 2	CCog = 1
 
-	private void clasificaVendedores(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas) {
+	/**
+	 * Metodo para clasificar los vendedores en diferentes listas
+	 * @param senior lista donde se meteran los vendedores senior
+	 * @param junior lista donde se meteran los vendedores junior
+	 * @param practicas lista donde se meteran los vendedores en practicas
+	 */
+	private void clasificaVendedores(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas) { //WMC + 1
 		for (Vendedor v : vendedores) { //WMC + 1 	CCog + 1
 			if (v instanceof VendedorEnPracticas) { //WMC + 1 	CCog + 2
 				practicas.add(v);
@@ -261,6 +288,6 @@ public class Tienda {
 					senior.add(vp);
 			}
 		}
-	}
+	}//WMC = 5	CCog = 7
 
 }

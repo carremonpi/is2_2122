@@ -4,10 +4,9 @@ public class VendedorEnPlantillaSenior extends VendedorEnPlantilla {
 	
 	private static final double MULTIPLICADOR = 0.01;
 	
-	public VendedorEnPlantillaSenior(String nombre, String id, String dni) {
+	public VendedorEnPlantillaSenior(String nombre, String id, String dni) { //WMC + 1
 		super(nombre, id, dni, MULTIPLICADOR);
-		// TODO Auto-generated constructor stub
-	}
+	} //WMC = 1
 	
 	@Override
 	public boolean equals(Object obj) { //WMC + 1
