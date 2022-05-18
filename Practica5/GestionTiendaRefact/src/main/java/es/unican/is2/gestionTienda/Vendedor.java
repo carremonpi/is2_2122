@@ -17,7 +17,7 @@ public abstract class Vendedor {
 	// Valor total de las ventas mensuales realizadas por el vendedor
 	private double totalVentasMensuales;
 	
-	public Vendedor(String nombre, String id, String dni, double multiplicador) { //WMC + 1
+	protected Vendedor(String nombre, String id, String dni, double multiplicador) { //WMC + 1
 		this.nombre = nombre;
 		this.id = id;
 		this.dni = dni;
@@ -82,5 +82,34 @@ public abstract class Vendedor {
 	public void anhadeVenta(double importe){ //WMC + 1
 		totalVentasMensuales += importe + importe * MULTIPLICADOR;
 	} //WMC = 1		CCog=0
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (getClass() != obj.getClass())
+			return false;
+		Vendedor other = (Vendedor) obj;
+		if (dni == null) {
+			
+		} else if (!dni.equals(other.dni))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 	
 } //WMC = 7 	WMCn = 1 	CCog = 0

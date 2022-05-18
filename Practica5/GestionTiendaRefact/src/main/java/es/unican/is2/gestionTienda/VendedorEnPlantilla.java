@@ -10,7 +10,7 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 	 * @param dni el dni del vendedor
 	 * @param multiplicador la bonificacion a las ventas del vendedor
 	 */
-	public VendedorEnPlantilla(String nombre, String id, String dni, double multiplicador) { //WMC + 1
+	protected VendedorEnPlantilla(String nombre, String id, String dni, double multiplicador) { //WMC + 1
 		super(nombre, id, dni, multiplicador);
 	} //WMC = 1		CCog=0
 	

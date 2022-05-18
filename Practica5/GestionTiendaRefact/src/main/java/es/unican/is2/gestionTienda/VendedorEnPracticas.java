@@ -22,4 +22,13 @@ public class VendedorEnPracticas extends Vendedor {
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 	CCog + 1
 	} //WMC = 3 	CCog = 2
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((this.getDni() == null) ? 0 : this.getDni().hashCode());
+		result = prime * result + ((this.getId() == null) ? 0 : this.getId().hashCode());
+		return result;
+	}
+	
 } //WMC = 4 	WMCn = 2 	CCog = 2

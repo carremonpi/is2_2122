@@ -24,14 +24,6 @@ public class GestionComisiones {
 		// opciones del menu
 		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
 
-		// variables auxiliares
-		String dni;
-		Lectura lect;
-
-		List<Vendedor> vendedores;
-		List<Vendedor> resultado;
-		String msj;
-
 		// crea la tienda
 		Tienda tienda = new Tienda("C:\\Temp\\datosTienda.txt");
 
@@ -63,6 +55,11 @@ public class GestionComisiones {
 	
 				imprimeVendedores(tienda);
 				break;
+				
+			default:
+				
+				System.out.println("La opcion indicada no esta soportada");
+				break;
 			}
 		}
 	} //WMC = 5 	CCog = 3
@@ -85,7 +82,7 @@ public class GestionComisiones {
 		List<Vendedor> resultado;
 		String msj;
 		vendedores = tienda.vendedores();
-		resultado = new LinkedList<Vendedor>();
+		resultado = new LinkedList<>();
 		double maxVentas = 0.0;
 		for (Vendedor v : vendedores) { //WMC + 1 	CCog + 1
 			if (v.getTotalVentas() > maxVentas) { //WMC + 1 	CCog + 2

@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class Tienda {
 
-	private LinkedList<Vendedor> vendedores = new LinkedList<Vendedor>();
+	private LinkedList<Vendedor> vendedores = new LinkedList<>();
 	private String direccion;
 	private String nombre;
 
@@ -121,17 +121,16 @@ public class Tienda {
 	} //WMC = 3 	CCog = 3
 
 	private void leeFichero() { //WMC + 1
-		vendedores = new LinkedList<Vendedor>();
-		Scanner in = null;
-		try {
-			// abre el fichero
-			in = new Scanner(new FileReader(datos));
+		vendedores = new LinkedList<>();
+		
+		// abre el fichero
+		try (Scanner in = new Scanner(new FileReader(datos))) {
+			
 			// configura el formato de números
 			in.useLocale(Locale.ENGLISH);
 			nombre = in.nextLine();
 			direccion = in.nextLine();
 			in.next();
-			Vendedor ven = null;
 			// lee los vendedores senior
 			leeVendedorSenior(in);
 			
@@ -142,11 +141,9 @@ public class Tienda {
 			leeVendedorEnPracticas(in);
 			
 		} catch (FileNotFoundException e) { //CCog + 1 
-		} finally {
-			if (in != null) {//WMC + 1 	    CCog + 1
-				in.close();
-			}
-		}
+			
+		} 
+		
 	} //WMC = 2 	CCog = 2
 	
 	/**
@@ -157,14 +154,14 @@ public class Tienda {
 		Vendedor ven;
 		while (in.hasNext()) { //WMC + 1 		CCog + 1
 			in.next();
-			String nombre = in.next();
+			String nombreLeido = in.next();
 			in.next();
 			String idIn = in.next();
 			in.next();
 			String dni= in.next();
 			in.next();
 			double totalVentas = in.nextDouble();
-			ven = new VendedorEnPracticas(nombre, idIn, dni);
+			ven = new VendedorEnPracticas(nombreLeido, idIn, dni);
 			ven.setTotalVentas(totalVentas);
 			vendedores.add(ven);
 		}
@@ -177,14 +174,14 @@ public class Tienda {
 	private void leeVendedorJunior(Scanner in) { //WMC + 1
 		Vendedor ven;
 		while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 		CCog + 2
-			String nombre = in.next();
+			String nombreLeido = in.next();
 			in.next();
 			String idIn = in.next();
 			in.next();
 			String dni= in.next();
 			in.next();
 			double totalVentas = in.nextDouble();
-			ven = new VendedorEnPlantillaJunior(nombre, idIn, dni);
+			ven = new VendedorEnPlantillaJunior(nombreLeido, idIn, dni);
 			ven.setTotalVentas(totalVentas);
 			vendedores.add(ven);
 		}
@@ -198,14 +195,14 @@ public class Tienda {
 		Vendedor ven;
 		while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 	CCog + 2
 
-			String nombre = in.next();
+			String nombreLeido = in.next();
 			in.next();
 			String idIn = in.next();
 			in.next();
 			String dni= in.next();
 			in.next();
 			double totalVentas = in.nextDouble();
-			ven = new VendedorEnPlantillaSenior(nombre, idIn, dni);
+			ven = new VendedorEnPlantillaSenior(nombreLeido, idIn, dni);
 			ven.setTotalVentas(totalVentas);
 			vendedores.add(ven);
 		}
@@ -228,16 +225,14 @@ public class Tienda {
 	 * con los datos actualizados de los vendedores
 	 */
 	private void vuelcaDatos() throws IOException { //WMC + 1
-		PrintWriter out = null;
-		List<Vendedor> senior = new LinkedList<Vendedor>();
-		List<Vendedor> junior = new LinkedList<Vendedor>();
-		List<Vendedor> practicas = new LinkedList<Vendedor>();
+		
+		List<Vendedor> senior = new LinkedList<>();
+		List<Vendedor> junior = new LinkedList<>();
+		List<Vendedor> practicas = new LinkedList<>();
 
 		clasificaVendedores(senior, junior, practicas);
 
-		try {
-
-			out = new PrintWriter(new FileWriter(datos));
+		try (PrintWriter out = new PrintWriter(new FileWriter(datos))) {
 
 			out.println(nombre);
 			out.println(direccion);
@@ -251,10 +246,7 @@ public class Tienda {
 			out.println("Prácticas");
 			escribeVendedor(out, practicas);
 
-		} finally {
-			if (out != null) //WMC + 1 	 CCog + 1
-				out.close();
-		}
+		} 
 	} //WMC = 2	CCog = 1
 	
 	/**
@@ -281,11 +273,10 @@ public class Tienda {
 			if (v instanceof VendedorEnPracticas) { //WMC + 1 	CCog + 2
 				practicas.add(v);
 			} else if (v instanceof VendedorEnPlantilla) { //WMC + 1 	CCog + 1
-				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
-				if (vp instanceof VendedorEnPlantillaJunior) //WMC + 1 		CCog + 3 
-					junior.add(vp);
+				if (v instanceof VendedorEnPlantillaJunior) //WMC + 1 		CCog + 3 
+					junior.add(v);
 				else //CCog + 1
-					senior.add(vp);
+					senior.add(v);
 			}
 		}
 	} //WMC = 5	CCog = 7
